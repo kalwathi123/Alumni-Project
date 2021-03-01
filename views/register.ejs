@@ -1,0 +1,23 @@
+<%- include('partials/header')%>
+
+<div id="container">
+    <div class="form-wrap">
+        <h2>Register</h2>
+        <p>Please select appropriate option</p>
+        <form action="./signupalumni.html">
+            <div class="form-group">
+                <select name="category" id="category" class="category">
+                    <option value="select">
+                        --Select the option--
+                    </option>
+                    <option value="Alumni">Alumni</option>
+                    <option value="Student">Student</option>
+                    <option value="Staff">Staff</option>
+                </select>
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
+    </div>
+</div>
+
+<%- include('partials/footer')%>

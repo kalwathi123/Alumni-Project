@@ -1,5 +1,6 @@
 var express = require('express'),
     app = express(),
+    bodyParser = require('body-parser'),
     mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/alumni', {
@@ -11,6 +12,7 @@ mongoose.connect('mongodb://localhost/alumni', {
 
 var indexRoutes = require('./routes/index');
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
