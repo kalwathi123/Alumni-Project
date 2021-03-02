@@ -12,7 +12,8 @@ var StudentUserSchema = new mongoose.Schema({
     Password: String,
     ConfirmPassword: String,
     resetPasswordToken: String,
-    resetPasswordExpires: Date
+    resetPasswordExpires: Date,
+    isStudent: { type: Boolean, default: false }
 });
 
 StudentUserSchema.plugin(passportLocalMongoose);

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var StudentUser = require('../models/studentUser');
 var passport = require('passport');
+var middleware = require('../middleware');
 
 router.get('/', function (req, res) {
     res.render('landing');
@@ -11,10 +12,28 @@ router.get('/login', function (req, res) {
     res.render('login');
 });
 
-router.post('/login', function (req, res) {
-    const obj = JSON.parse(JSON.stringify(req.body));
-    if(obj.email === 'e7cs098@sairamtap.edu.in' && obj.password ==='vijayabdul')
-    res.render('select');
+router.post('/login', function (req, res, next) {
+    // const obj = JSON.parse(JSON.stringify(req.body));
+    // if(obj.email === 'e7cs098@sairamtap.edu.in' && obj.password ==='vijayabdul')
+    // res.render('select');
+
+    passport.authenticate('local', function (err, user, info) {
+        if (err) {
+            console.log(err);
+            return next(err);
+        }
+        if (!user) {
+            req.flash("error", "Invalid Username or password")
+            return res.redirect('/login');
+        }
+        req.logIn(user, function (err) {
+            if (err) { return next(err); }
+            var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/select';
+            delete req.session.redirectTo;
+            req.flash("success", 'Welcome back ' + req.user.username)
+            res.redirect(redirectTo);
+        });
+    })(req, res, next);
 });
 
 router.get('/register', function (req, res) {
@@ -23,6 +42,10 @@ router.get('/register', function (req, res) {
 
 router.post('/register', function(req,res){
     const obj = JSON.parse(JSON.stringify(req.body));
+    if(obj.category === 'select'){
+        req.flash("error", "Please select the option");
+        res.redirect('/register');
+    }
     if(obj.category === 'Alumni'){
         res.redirect('/alumniSignUp');
     }
@@ -122,6 +145,7 @@ router.post('/studentSignUp', function (req, res) {
         Year: obj.year.trim(),
         Department: obj.dept.trim(),
         PhoneNo: obj.phoneno.trim(),
+        isStudent: true
     });
 
     StudentUser.register(newStudentUser, obj.password, function (err, user) {
@@ -137,5 +161,16 @@ router.post('/studentSignUp', function (req, res) {
     })
     // ===================
 })
+
+//logout
+router.get('/logout', function (req, res) {
+    req.flash("success", "Successfully logged out");
+    req.logout();
+    res.redirect('/login');
+});
+
+router.get('/select', middleware.isStudentLoggedin, function (req, res) {
+    res.render('select');
+});
 
 module.exports = router;
