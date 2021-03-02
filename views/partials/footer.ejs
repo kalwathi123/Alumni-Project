@@ -1,3 +1,11 @@
+        <div class="container">
+            <% if(success && success.length>0) { %>
+            <div class="alert alert-success" role="alert"><%= success %></div>
+            <% } if(error && error.length>0){ %>
+            <div class="alert alert-danger" role="alert"><%= error %></div>
+            <% } %>
+        </div>
+        
         <script
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
