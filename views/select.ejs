@@ -15,7 +15,7 @@
             href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB3QW3jbq20iZYmAeEWxKyLKbiYTxoHzb5-w&usqp=CAU"
             type="image/x-icon"
         />
-    <link rel="stylesheet" type="text/css" href="index.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/index.css" />
 
 
 </head>
@@ -36,52 +36,47 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="index.html">Home</a></li>
+              <li class="active"><a href="/">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="#">Contact</a></li>
             </ul> 
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="login.html">Login <i class="fas fa-user"></i></a></li>
-              <li><a href="register.html">Register <i class="fas fa-user-plus"></i></a></li>
+              <li><a href="/login">Login <i class="fas fa-user"></i></a></li>
+              <li><a href="/register">Register <i class="fas fa-user-plus"></i></a></li>
               
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
 
-     <div class="container">
-		<div class="row flex">
-			<div class="txt col-lg-4 col-sm-6"> 
-                Placement
-                <a href="calling.html">
-                    <div class="thumbnail"> 
-                        <div class="image image1"></div> 
-                    </div> <!-- USED FOR IMAGES OF DIFFERENT SIZES -->
-                </a>
-			</div>
-            <div class="txt col-lg-4 col-sm-6">
-                Meet-Ups
-				<a href="announcement.html">
-                    <div class="thumbnail">
-					<div class="image image2"></div>
-                </a>
-			    </div>
-			</div>
-			<div class="txt col-lg-4 col-sm-6">
-                Higher Studies
-                <a href="namelist.html">
-                    <div class="thumbnail">
-                        <div class="image image3"></div>
-                    </div>
-                </a>
-			</div>
-     
-		</div>
-    </div>
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</body>
-</html>
+<div class="container">
+    <div class="row flex">
+        <div class="txt col-lg-4 col-sm-6"> 
+            Placement
+            <a href="calling.html">
+                <div class="thumbnail"> 
+                    <div class="image image1"></div> 
+                </div> <!-- USED FOR IMAGES OF DIFFERENT SIZES -->
+            </a>
+        </div>
+        <div class="txt col-lg-4 col-sm-6">
+            Meet-Ups
+            <a href="announcement.html">
+                <div class="thumbnail">
+                <div class="image image2"></div>
+            </a>
+            </div>
+        </div>
+        <div class="txt col-lg-4 col-sm-6">
+            Higher Studies
+            <a href="namelist.html">
+                <div class="thumbnail">
+                    <div class="image image3"></div>
+                </div>
+            </a>
+        </div>
+    </div>  
+</div>
+
+
+<%- include('partials/footer')%>
