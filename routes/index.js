@@ -17,31 +17,62 @@ router.get('/login', function (req, res) {
 });
 
 router.post('/login', function (req, res, next) {
-    // const obj = JSON.parse(JSON.stringify(req.body));
-
-    passport.authenticate('local', function (err, user, info) {
-        if (err) {
-            console.log(err);
-            return next(err);
+    const obj = JSON.parse(JSON.stringify(req.body));
+    // console.log(obj);
+    StudentUser.findOne({username: obj.username},function(err, user){
+        if(user && user.isStudent === true){
+            passport.authenticate('studentLocal', function (err, user, info) {
+                if (err) {
+                    console.log(err);
+                    return next(err);
+                }
+                if (!user) {
+                    req.flash("error", "Invalid Username or password")
+                    return res.redirect('/login');
+                }
+                req.logIn(user, function (err) {
+                    if (err) { return next(err); }
+                    if(user.isStudent === true){
+                        var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/select';
+                        delete req.session.redirectTo;
+                    }
+                    if(user.isAlumni === true){
+                        var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/alumniChoice';
+                        delete req.session.redirectTo;
+                    }
+                    req.flash("success", 'Welcome back ' + req.user.username)
+                    res.redirect(redirectTo);
+                });
+            })(req, res, next);
         }
-        if (!user) {
-            req.flash("error", "Invalid Username or password")
-            return res.redirect('/login');
+    })
+    AlumniUser.findOne({username: obj.username}, function(err, user){
+        if(user && user.isAlumni === true){
+            passport.authenticate('alumniLocal', function (err, user, info) {
+                if (err) {
+                    console.log(err);
+                    return next(err);
+                }
+                if (!user) {
+                    req.flash("error", "Invalid Username or password")
+                    return res.redirect('/login');
+                }
+                req.logIn(user, function (err) {
+                    if (err) { return next(err); }
+                    if(user.isStudent === true){
+                        var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/select';
+                        delete req.session.redirectTo;
+                    }
+                    if(user.isAlumni === true){
+                        var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/alumniChoice';
+                        delete req.session.redirectTo;
+                    }
+                    req.flash("success", 'Welcome back ' + req.user.username)
+                    res.redirect(redirectTo);
+                });
+            })(req, res, next);
         }
-        req.logIn(user, function (err) {
-            if (err) { return next(err); }
-            if(user.isStudent === true){
-                var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/select';
-                delete req.session.redirectTo;
-            }
-            if(user.isAlumni === true){
-                var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/alumniChoice';
-                delete req.session.redirectTo;
-            }
-            req.flash("success", 'Welcome back ' + req.user.username)
-            res.redirect(redirectTo);
-        });
-    })(req, res, next);
+    })
 });
 
 router.get('/register', function (req, res) {

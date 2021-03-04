@@ -34,13 +34,17 @@ app.use(require('express-session')({
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(StudentUser.authenticate()));
-passport.serializeUser(StudentUser.serializeUser());
-passport.deserializeUser(StudentUser.deserializeUser());
-passport.use(new LocalStrategy(AlumniUser.authenticate()));
-passport.serializeUser(AlumniUser.serializeUser());
-passport.deserializeUser(AlumniUser.deserializeUser());
 
+passport.use('studentLocal', new LocalStrategy(StudentUser.authenticate()));
+passport.use('alumniLocal', new LocalStrategy(AlumniUser.authenticate()));
+passport.serializeUser(function(user, done) { 
+    done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+    if(user!=null)
+        done(null,user);
+});
 
 app.use(function (req, res, next) {
     res.locals.currentUser = req.user;
