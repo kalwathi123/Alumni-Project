@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var StudentUser = require('../models/studentUser');
 var AlumniUser = require('../models/alumniUser');
+var StaffUser =require('../models/staffUser');
 var passport = require('passport');
 var middleware = require('../middleware');
 var async = require('async');
@@ -32,14 +33,8 @@ router.post('/login', function (req, res, next) {
                 }
                 req.logIn(user, function (err) {
                     if (err) { return next(err); }
-                    if(user.isStudent === true){
-                        var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/select';
-                        delete req.session.redirectTo;
-                    }
-                    if(user.isAlumni === true){
-                        var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/alumniChoice';
-                        delete req.session.redirectTo;
-                    }
+                    var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/select';
+                    delete req.session.redirectTo;
                     req.flash("success", 'Welcome back ' + req.user.username)
                     res.redirect(redirectTo);
                 });
@@ -59,14 +54,29 @@ router.post('/login', function (req, res, next) {
                 }
                 req.logIn(user, function (err) {
                     if (err) { return next(err); }
-                    if(user.isStudent === true){
-                        var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/select';
-                        delete req.session.redirectTo;
-                    }
-                    if(user.isAlumni === true){
-                        var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/alumniChoice';
-                        delete req.session.redirectTo;
-                    }
+                    var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/alumniChoice';
+                    delete req.session.redirectTo;
+                    req.flash("success", 'Welcome back ' + req.user.username)
+                    res.redirect(redirectTo);
+                });
+            })(req, res, next);
+        }
+    })
+    StaffUser.findOne({username: obj.username}, function(err, user){
+        if(user && user.isStaff === true){
+            passport.authenticate('staffLocal', function (err, user, info) {
+                if (err) {
+                    console.log(err);
+                    return next(err);
+                }
+                if (!user) {
+                    req.flash("error", "Invalid Username or password")
+                    return res.redirect('/login');
+                }
+                req.logIn(user, function (err) {
+                    if (err) { return next(err); }
+                    var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/';
+                    delete req.session.redirectTo;
                     req.flash("success", 'Welcome back ' + req.user.username)
                     res.redirect(redirectTo);
                 });
@@ -74,6 +84,7 @@ router.post('/login', function (req, res, next) {
         }
     })
 });
+
 
 router.get('/register', function (req, res) {
     res.render('register');
@@ -262,6 +273,96 @@ router.post('/alumniSignUp', function (req, res) {
             else if (err || user) {
                 req.flash("error", "EmailID already exists");
                 return res.redirect('/alumniSignUp');
+            }
+        });
+    }
+
+    // newAlumniUser = new AlumniUser({
+    //     username: obj.username.trim(),
+    //     Name: obj.name.trim(),
+    //     CompanyName: obj.company.trim(),
+    //     Designation: obj.designation.trim(),
+    //     PassedOutYear: obj.passout.trim(),
+    //     LinkedInID: obj.linkedIn.trim(),
+    //     PhoneNo: obj.phoneno.trim(),
+    //     isAlumni: true
+    // });
+
+    // AlumniUser.register(newAlumniUser, obj.password, function (err, user) {
+    //     if (err) {
+    //         console.log(err);
+    //         req.flash("error", err.message);
+    //         return res.redirect('/alumniSignUp');
+    //     }
+    //     passport.authenticate('local')(req, res, function () {
+    //         req.flash("success", "Successfully registered as " + newAlumniUser.username);
+    //         res.redirect('/login');
+    //     })
+    // })
+    // ===================
+})
+
+router.post('/staffSignUp', function (req, res) {
+    const obj = JSON.parse(JSON.stringify(req.body));
+    if (obj.password.length < 6) {
+        req.flash("error", "password length must be greater than 6 Characters");
+        res.redirect('/staffSignUp');
+    }
+    else if(obj.password !== obj.confirmPassword){
+        req.flash("error", "Password mismatch");
+        res.redirect('/staffSignUp');
+    }
+    else {
+        newStaffUser = new StaffUser({
+            username: obj.username.trim(),
+            Name: obj.name.trim(),
+            StaffId: obj.staffId.trim(),
+            Designation: obj.designation.trim(),
+            Department: obj.dept.trim(),
+            PhoneNo: obj.phoneno.trim(),
+            isStaff: true
+        });
+        StaffUser.findOne({ email: obj.email }, function (err, user) {
+            if (!user) {
+                newStaffUser.EmailId = obj.email.trim();
+                async.waterfall([
+                    function (done) {
+                        StaffUser.register(newStaffUser, obj.password, function (err, user) {
+                            if (err) {
+                                console.log(err);
+                                req.flash("error", err.message);
+                                return res.redirect('/staffSignUp');
+                            }
+                            passport.authenticate('local')(req, res, function () {
+                                req.flash("success", "Successfully registered as " + newStaffUser.username);
+                                res.redirect('/login');
+                            })
+                        })
+                    },
+                    function (user, done) {
+                        var smtpTransport = nodemailer.createTransport({
+                            service: 'Gmail',
+                            auth: {
+                                user: 'vijaiselvan2000@gmail.com',
+                                pass: process.env.GMAILPW
+                            }
+                        });
+                        var mailOptions = {
+                            to: user.email,
+                            from: 'vijaiselvan2000@mail.com',
+                            subject: 'WELCOME TO ALUMNI NETWORK AND CAREER GUIDANCE PORTAL',
+                            text: 'Hello,\n\n' +
+                                'Thankyou ' + user.username + ' for signing in\n\n' + 'You are ready access our web portal ' + 'http://' + req.headers.host
+                        };
+                        smtpTransport.sendMail(mailOptions, function (err) {
+                            done(err);
+                        });
+                    }
+                ])
+            }
+            else if (err || user) {
+                req.flash("error", "EmailID already exists");
+                return res.redirect('/staffSignUp');
             }
         });
     }
