@@ -12,7 +12,7 @@ var StaffUserSchema = new mongoose.Schema({
     ConfirmPassword: String,
     resetPasswordToken: String,
     resetPasswordExpires: Date,
-    isStaff: { type: Boolean, default: false }
+    isStaff: { type: Boolean, default: false },
 });
 
 StaffUserSchema.plugin(passportLocalMongoose);

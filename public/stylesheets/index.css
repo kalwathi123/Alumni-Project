@@ -178,14 +178,17 @@ footer a {
     padding-top: 100px;
     background: #ecf0f1;
 }
-.image-choice1 {
+.placement-review {
     background-image: url(https://www.myamcat.com/blog/wp-content/uploads/2020/08/Campus-Placement.png);
 }
-.image-choice2 {
+.company-review {
     background-image: url(https://www.reviewme.com/wp-content/uploads/2019/07/reviews.png);
     max-width: 100%;
     height: auto;
     object-fit: cover;
+}
+.higher-studies-review{
+    background-image: url(https://leverageedu.com/blog/wp-content/uploads/2019/11/Higher-Studies-in-Canada.png);
 }
 .image-choice {
     width: 100%;

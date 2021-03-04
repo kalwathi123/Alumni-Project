@@ -14,7 +14,7 @@ var AlumniUserSchema = new mongoose.Schema({
     ConfirmPassword: String,
     resetPasswordToken: String,
     resetPasswordExpires: Date,
-    isAlumni: { type: Boolean, default: false }
+    isAlumni: { type: Boolean, default: false },
 });
 
 AlumniUserSchema.plugin(passportLocalMongoose);

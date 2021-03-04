@@ -50,24 +50,35 @@
 
 <div class="container">
     <div class="row flex">
+       <% passOutYear = new Date(currentUser.PassedOutYear)
+        if((new Date().getFullYear() - passOutYear.getFullYear()) > 1) {  %>
+            <div class="txt col-lg-6 col-sm-6">
+                Company Review
+                <a href="announcement.html">
+                    <div class="thumbnail">
+                        <div class="image-choice company-review"></div>
+                    </div>
+                </a>
+            </div>
+        <% } else { %>
         <div class="txt col-lg-6 col-sm-6"> 
             Placement Review
             <a href="calling.html">
                 <div class="thumbnail">
-                    <div class="image-choice image-choice1"></div> 
+                    <div class="image-choice placement-review"></div> 
                 </div>
             </a>
         </div>
+        <% } %>
         <div class="txt col-lg-6 col-sm-6">
-            Company Review
-            <a href="announcement.html">
+            Higher Studies Review
+            <a href="namelist.html">
                 <div class="thumbnail">
-                <div class="image-choice image-choice2"></div>
+                    <div class="image-choice higher-studies-review"></div>
+                </div>
             </a>
-            </div>
         </div>
     </div>  
 </div>
-
 
 <%- include('partials/footer')%>
