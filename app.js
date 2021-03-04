@@ -5,6 +5,7 @@ var express = require('express'),
     passport = require('passport'),
     LocalStrategy = require('passport-local'),
     StudentUser = require('./models/studentUser'),
+    AlumniUser = require('./models/alumniUser'),
     methodOverride = require('method-override'),
     flash = require('connect-flash');
 
@@ -36,6 +37,10 @@ app.use(passport.session());
 passport.use(new LocalStrategy(StudentUser.authenticate()));
 passport.serializeUser(StudentUser.serializeUser());
 passport.deserializeUser(StudentUser.deserializeUser());
+passport.use(new LocalStrategy(AlumniUser.authenticate()));
+passport.serializeUser(AlumniUser.serializeUser());
+passport.deserializeUser(AlumniUser.deserializeUser());
+
 
 app.use(function (req, res, next) {
     res.locals.currentUser = req.user;

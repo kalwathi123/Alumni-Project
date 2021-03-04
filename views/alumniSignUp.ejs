@@ -4,32 +4,81 @@
     <div class="form-wrap signUp">
         <h2>Sign Up as Alumni</h2>
         <p>It's free and only takes a minute</p>
-        <form>
+        <form method="POST">
             <div class="form-group">
-                <label for="first-name">Name</label>
-                <input type="text" name="firstName" id="first-name" />
+                <label for="username">User Name</label>
+                <input type="text" name="username" id="username" />
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" />
             </div>
             <div class="form-group">
                 <label for="email">Email ID</label>
                 <input type="email" name="email" id="email" />
             </div>
             <div class="form-group">
-                <label for="branch">Branch</label>
-                <select name="branch" id="branch">
+                <label for="company">Company Name</label>
+                <select name="company" id="company">
                     <option value="select">
-                        --Select the branch--
+                        --Select your company--
                     </option>
-                    <option value="CSE">
-                        Computer Science and Engineering
+                    <option value="TCS">TCS
                     </option>
-                    <option value="Mech">Mechanical Engineering</option>
-                    <option value="Civil">Civil Engineering</option>
-                    <option value="ECE">
-                        Electronics and Communication Engineering
+                    <option value="Infosys">Infosys
                     </option>
-                    <option value="IT">Information Technology</option>
-                    <option value="EEE">Electrical engineering</option>
+                    <option value="Accenture">Accenture
+                    </option>
+                    <option value="Cognizant">Cognizant
+                    </option>
+                    <option value="Pega">Pega
+                    </option>
+                    <option value="Hexaware">Hexaware
+                    </option>
+                    <option value="Zoho">Zoho
+                    </option>
+                    <option value="Prodapt">Prodapt
+                    </option>
+                    <option value="Wipro">Wipro
+                    </option>
+                    <option value="SerendeByte">SerendeByte
+                    </option>
+                    <option value="Sify">Sify
+                    </option>
+                    <option value="Itc infotech">Itc infotech
+                    </option>
+                    <option value="Guardian">Guardian
+                    </option>
+                    <option value="IBM">IBM
+                    </option>
+                    <option value="HCL">HCL
+                    </option>
+                    <option value="virtusa polaris">virtusa polaris
+                    </option>
+                    <option value="Mphasis">Mphasis
+                    </option>
+                    <option value="CISCO">CISCO
+                    </option>
+                    <option value="SKILL LYNC">SKILL LYNC
+                    </option>
+                    <option value="NEWGEN">NEWGEN</option>
+                    <option value="Goldman Sachs">Goldman Sachs
+                    </option>
+                    <option value="mr.cooper">mr.cooper
+                    </option>
+                    <option value="Vembu">Vembu
+                    </option>
+                    <option value="Kaar Technology">Kaar Technology
+                    </option>
+                    <option value="Tech mahindra">Tech mahindra
+                    </option>
+                    <option value="">Solartis
+                    </option>           
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="designation">Designation</label>
+                <input type="text" name="designation" id="designation" />
             </div>
             <div class="form-group">
                 <label for="passout">Passed out year</label>
@@ -48,8 +97,8 @@
                 <input type="password" name="password" id="password" />
             </div>
             <div class="form-group">
-                <label for="password2">Confirm Password</label>
-                <input type="password" name="pasword2" id="password2" />
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" name="confirmPassword" id="confirmPassword" />
             </div>
             <button type="submit" class="btn">Sign Up</button>
             <p class="bottom-text">

@@ -1,21 +1,22 @@
 var mongoose = require('mongoose');
 var passportLocalMongoose = require('passport-local-mongoose');
 
-var StudentUserSchema = new mongoose.Schema({
+var AlumniUserSchema = new mongoose.Schema({
     username: String,
     Name: String,
     EmailId: { type: String, unique: true, required: true },
-    StudentId: { type: String, unique: true, required: true },
-    Year: String,
-    Department: String,
+    CompanyName: { type: String, unique: true, required: true },
+    Designation: String,
+    PassedOutYear: Date,
+    LinkedInID: String,
     PhoneNo: String,
     Password: String,
     ConfirmPassword: String,
     resetPasswordToken: String,
     resetPasswordExpires: Date,
-    isStudent: { type: Boolean, default: false }
+    isAlumni: { type: Boolean, default: false }
 });
 
-StudentUserSchema.plugin(passportLocalMongoose);
+AlumniUserSchema.plugin(passportLocalMongoose);
 
-module.exports = mongoose.model('StudentUser', StudentUserSchema);
+module.exports = mongoose.model('AlumniUser', AlumniUserSchema);
