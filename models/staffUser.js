@@ -4,7 +4,7 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var StaffUserSchema = new mongoose.Schema({
     Name: String,
     EmailId: { type: String, unique: true, required: true },
-    StafftId: { type: String, unique: true, required: true },
+    StaffId: { type: String, unique: true, required: true },
     Designation: String,
     Department: String,
     PhoneNo: String,
