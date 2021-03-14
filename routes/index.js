@@ -478,4 +478,9 @@ router.get('/users/:id', function (req, res) {
     })
 })
 
+// Companies
+router.get('/placement', middleware.isStudentLoggedin, function (req, res) {
+    res.render('placement/companies');
+});
+
 module.exports = router;
