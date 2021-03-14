@@ -465,4 +465,17 @@ router.get('/alumniChoice', middleware.isAlumniLoggedin, function (req, res) {
     res.render('alumniChoice');
 });
 
+// USER PROFILE
+router.get('/users/:id', function (req, res) {
+    StudentUser.findById(req.params.id, function (err, foundUser) {
+        if (err) {
+            req.flash('error', 'Something went wrong.');
+            res.redirect('back');
+        }
+        else {
+            res.render('users/show', { user: foundUser });
+        }
+    })
+})
+
 module.exports = router;

@@ -109,6 +109,11 @@ footer a {
     color: #49c1a2;
 }
 
+/* User Profile */
+.profile{
+    margin-top: 300px !important;
+}
+
 /* register */
 .form-wrap .form-group select {
     width: 100%;
