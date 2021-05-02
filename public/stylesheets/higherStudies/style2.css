@@ -1,0 +1,50 @@
+body {
+	background: url("../../images/higherStudies/msbg.jpg") no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-height: 100vh;
+ 
+}
+.container
+{
+  margin-top: 1%;
+  margin-bottom: 60px
+}
+.col-md-4:hover{
+  overflow: hidden;
+     transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.title {
+	font-family: "Montserrat";
+	text-align: center;
+	color: yellow;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 25vh;
+	letter-spacing: 1px;
+}
+
+h1 {
+	background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif) ;
+	background-size: cover;
+	color: transparent;
+	-moz-background-clip: text;
+	-webkit-background-clip: text;
+	text-transform: uppercase;
+	font-size: 15px;
+	line-height: .85;
+	margin: 10px 0;
+}
+/* styling my button */
+a {
+	color: #000;
+	text-decoration: none !important;
+	list-style: none;
+}

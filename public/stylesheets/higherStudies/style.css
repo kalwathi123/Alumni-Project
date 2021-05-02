@@ -1,0 +1,47 @@
+body {
+ background-image: url("../../images/higherStudies/bg.jpg");
+ background-color: #cccccc;
+}
+.container
+{
+  margin-top: 1%;
+  margin-bottom: 10px
+}
+
+.col-md-4
+{
+  border-radius: 4px;
+   background: #fff;
+   box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+     transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+ padding: 14px 80px 18px 36px;
+ cursor: pointer;
+}
+.col-md-4:hover{
+     transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+.title {
+	font-family: "Montserrat";
+	text-align: center;
+	color: cyan;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 25vh;
+	letter-spacing: 1px;
+}
+
+h1 {
+	background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
+	background-size: cover;
+	color: transparent;
+	-moz-background-clip: text;
+	-webkit-background-clip: text;
+	text-transform: uppercase;
+	font-size: 45px;
+	line-height: .85;
+	margin: 10px 0;
+}
+
