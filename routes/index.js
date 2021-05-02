@@ -87,7 +87,7 @@ router.post("/login", function (req, res, next) {
           }
           var redirectTo = req.session.redirectTo
             ? req.session.redirectTo
-            : "/";
+            : "/staff";
           delete req.session.redirectTo;
           req.flash("success", "Welcome back " + req.user.username);
           res.redirect(redirectTo);
