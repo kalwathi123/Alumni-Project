@@ -483,4 +483,8 @@ router.get('/placement', middleware.isStudentLoggedin, function (req, res) {
     res.render('placement/companies');
 });
 
+router.get('/placementReview', middleware.isAlumniLoggedin, function (req, res) {
+    res.render('placement/placementReview');
+});
+
 module.exports = router;
