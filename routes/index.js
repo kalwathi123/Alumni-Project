@@ -476,6 +476,14 @@ router.get('/placementReview', middleware.isAlumniLoggedin, function (req, res) 
     res.render('placement/placementReview');
 });
 
+router.get('/companyReview', middleware.isAlumniLoggedin, function (req, res) {
+    res.render('placement/companyReview');
+});
+
+router.get('/placementReview', middleware.isAlumniLoggedin, function (req, res) {
+    res.render('placement/placementReview');
+});
+
 router.get('/higherStudiesReview', middleware.isAlumniLoggedin, function (req, res) {
     res.render('higherStudies/higherStudiesReview');
 });

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"
+        />
+        <link rel="stylesheet" type="text/css" href="stylesheets/reviews/companyreview.css" />
+    </head>
+    <body>
+        <h2 id="fh2">WE APPRECIATE YOUR REVIEW!</h2>
+        <h6 id="fh6">Your review will help Students for thier career.</h6>
+
+        <form id="feedback" action="">
+            <div class="pinfo">Your personal info</div>
+
+            <div class="form-group">
+                <div class="col-12 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"
+                            ><i class="fa fa-user" style="color: green"></i
+                        ></span>
+                        <input
+                            name="name"
+                            placeholder="John Doe"
+                            class="form-control"
+                            type="text"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="pinfo">Company name</div>
+            <div class="form-group">
+                <div class="col-12 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"
+                            ><i class="fa fa-building" style="color: red"></i
+                        ></span>
+                        <input
+                            name="name"
+                            placeholder="zoho"
+                            class="form-control"
+                            type="text"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="pinfo">Rate our overall services.</div>
+
+            <div class="form-group">
+                <div class="col-12 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"
+                            ><i class="fa fa-heart" style="color: darkred"></i
+                        ></span>
+                        <select class="form-control" id="rate">
+                            <option value="1star">1</option>
+                            <option value="2stars">2</option>
+                            <option value="3stars">3</option>
+                            <option value="4stars">4</option>
+                            <option value="5stars">5</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pinfo">Write your feedback.</div>
+
+            <div class="form-group">
+                <div class="col-12 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"
+                            ><i class="fa fa-pencil"></i
+                        ></span>
+                        <textarea
+                            class="form-control"
+                            id="review"
+                            rows="3"
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="pinfo">Pros</div>
+            <div class="form-group">
+                <div class="col-12 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"
+                            ><i
+                                class="fa fa-plus-square"
+                                style="color: green"
+                            ></i
+                        ></span>
+                        <textarea
+                            class="form-control"
+                            id="pros"
+                            rows="3"
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="pinfo">cons</div>
+            <div class="form-group">
+                <div class="col-12 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"
+                            ><i
+                                class="fa fa-minus-square"
+                                style="color: firebrick"
+                            ></i
+                        ></span>
+                        <textarea
+                            class="form-control"
+                            id="pros"
+                            rows="3"
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+
+              <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#myModal"
+              >
+                  submit
+            </div>
+            </button>
+
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                            >
+                                &times;
+                            </button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            THANK YOU FOR FEEDBACK😀😀😀
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button
+                                type="button"
+                                class="btn btn-danger"
+                                data-dismiss="modal"
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
