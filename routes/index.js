@@ -467,9 +467,17 @@ router.get("/placement", middleware.isStudentLoggedin, function (req, res) {
   res.render("placement/companies");
 });
 
+router.get("/meetups", middleware.isStudentLoggedin, function (req, res) {
+    res.render("meetups/meetups");
+  });
+
 // placementReview - alumni
 router.get('/placementReview', middleware.isAlumniLoggedin, function (req, res) {
     res.render('placement/placementReview');
+});
+
+router.get('/higherStudiesReview', middleware.isAlumniLoggedin, function (req, res) {
+    res.render('higherStudies/higherStudiesReview');
 });
 
 //higher studies -  student
