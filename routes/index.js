@@ -87,7 +87,7 @@ router.post("/login", function (req, res, next) {
           }
           var redirectTo = req.session.redirectTo
             ? req.session.redirectTo
-            : "/";
+            : "/staff";
           delete req.session.redirectTo;
           req.flash("success", "Welcome back " + req.user.username);
           res.redirect(redirectTo);
@@ -465,6 +465,68 @@ router.get("/users/:id", function (req, res) {
 // Companies
 router.get("/placement", middleware.isStudentLoggedin, function (req, res) {
   res.render("placement/companies");
+});
+
+router.get("/meetups", middleware.isStudentLoggedin, function (req, res) {
+    res.render("meetups/meetups");
+  });
+
+// placementReview - alumni
+router.get('/placementReview', middleware.isAlumniLoggedin, function (req, res) {
+    res.render('placement/placementReview');
+});
+
+router.get('/companyReview', middleware.isAlumniLoggedin, function (req, res) {
+    res.render('placement/companyReview');
+});
+
+router.get('/placementReview', middleware.isAlumniLoggedin, function (req, res) {
+    res.render('placement/placementReview');
+});
+
+router.get('/higherStudiesReview', middleware.isAlumniLoggedin, function (req, res) {
+    res.render('higherStudies/higherStudiesReview');
+});
+
+//higher studies -  student
+router.get('/higherStudies', middleware.isStudentLoggedin, function (req, res) {
+    res.render('higherStudies/index');
+});
+
+router.get('/higherStudies/ms', middleware.isStudentLoggedin, function (req, res) {
+    res.render('higherStudies/ms');
+});
+
+router.get('/higherStudies/ms/qPaper', middleware.isStudentLoggedin, function (req, res) {
+    res.render('higherStudies/questionpaper-ms');
+});
+
+router.get('/higherStudies/ms/sMaterial', middleware.isStudentLoggedin, function (req, res) {
+    res.render('higherStudies/studymaterial-ms');
+});
+
+router.get('/higherStudies/mba', middleware.isStudentLoggedin, function (req, res) {
+    res.render('higherStudies/mba');
+});
+
+router.get('/higherStudies/mba/qPaper', middleware.isStudentLoggedin, function (req, res) {
+    res.render('higherStudies/questionpaper-mba');
+});
+
+router.get('/higherStudies/mba/sMaterial', middleware.isStudentLoggedin, function (req, res) {
+    res.render('higherStudies/studymaterial-mba');
+});
+
+router.get('/higherStudies/mtech', middleware.isStudentLoggedin, function (req, res) {
+    res.render('higherStudies/mtech');
+});
+
+router.get('/higherStudies/mtech/qPaper', middleware.isStudentLoggedin, function (req, res) {
+    res.render('higherStudies/questionpaper-mtech');
+});
+
+router.get('/higherStudies/mtech/sMaterial', middleware.isStudentLoggedin, function (req, res) {
+    res.render('higherStudies/studymaterial-mtech');
 });
 
 module.exports = router;

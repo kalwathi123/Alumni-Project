@@ -1,0 +1,25 @@
+.header img {
+    width: 45%;
+}
+
+.fa-download {
+    color: green;
+}
+
+.bg-img {
+    background: url("../../images/higherStudies/qpbg.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100vh;
+}
+.bgg-img
+{
+    background: url("../../images/higherStudies/smbg.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100vh;
+}
